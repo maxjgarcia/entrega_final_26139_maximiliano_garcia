@@ -21,6 +21,6 @@ public class Client {
     private Long id;
     private String name;
     private String email;
-    private int dni;
+    private String dni;
 
 }

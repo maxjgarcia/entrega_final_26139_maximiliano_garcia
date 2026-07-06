@@ -1,0 +1,48 @@
+package com.talento.ecommerce.clients.service;
+
+import com.talento.ecommerce.clients.model.Client;
+import com.talento.ecommerce.clients.repository.ClientRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ClientServiceImpl implements ClientService{
+
+        private final ClientRepository clientRepository;
+
+        @Autowired
+        public ClientServiceImpl(ClientRepository clientRepository){
+            this.clientRepository = clientRepository;
+        }
+
+        @Override
+        public List<Client> listClients() {
+            return clientRepository.findAll();
+        }
+
+        @Override
+        public Optional<Client> findClientById(Long id) {
+            return clientRepository.findById(id);
+        }
+
+        @Override
+        public Client saveClient(Client client) {
+            return clientRepository.save(client);
+        }
+
+        @Override
+        public Client updateClient(Long id, Client client) {
+            client.setId(id);
+            return clientRepository.save(client);
+        }
+
+        @Override
+        public void deleteClient(Long id) {
+            clientRepository.deleteById(id);
+        }
+
+}
